@@ -42,10 +42,10 @@ void Chat::userLogin()
 
 	do
 	{
-		cout << "Àâòîðèçàöèÿ." << endl;
-		cout << "Ëîãèí: " << endl;
+		cout << "ÐÐ²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ñ." << endl;
+		cout << "Ð›Ð¾Ð³Ð¸Ð½: " << endl;
 		cin >> login;
-		cout << "Ïàðîëü: " << endl;
+		cout << "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ: " << endl;
 		cin >> password;
 
 		currentUser_ = getUserLog(login);
@@ -53,7 +53,7 @@ void Chat::userLogin()
 		if (currentUser_ == nullptr || password != currentUser_->getPass())
 		{
 			currentUser_ = nullptr;
-			cout << "Íåïðàâèëüíûé ëîãèí èëè ïàðîëü. 0 - âûõîä." << endl;
+			cout << "ÐÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ð»Ð¾Ð³Ð¸Ð½ Ð¸Ð»Ð¸ Ð¿Ð°Ñ€Ð¾Ð»ÑŒ. 0 - Ð²Ñ‹Ñ…Ð¾Ð´." << endl;
 			cin >> op;
 
 			if (op == '0')
@@ -64,14 +64,14 @@ void Chat::userLogin()
 }
 void Chat::userRegistration()
 {
-	cout << "Ðåãèñòðàöèÿ" << endl;
+	cout << "Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ" << endl;
 	string login, password, name;
 
-	cout << "Ëîãèí:  " << endl;
+	cout << "Ð›Ð¾Ð³Ð¸Ð½:  " << endl;
 	cin >> login;
-	cout << "Ïàðîëü:   " << endl;
+	cout << "ÐŸÐ°Ñ€Ð¾Ð»ÑŒ:   " << endl;
 	cin >> password;
-	cout << "Èìÿ: " << endl;
+	cout << "Ð˜Ð¼Ñ: " << endl;
 	cin >> name;
 
 	if (getUserLog(login) || login == "all")
@@ -87,10 +87,10 @@ void Chat::userRegistration()
 void Chat::showUserMenu()
 {
 	char op;
-	cout << "Ïðèâåò, " << currentUser_->getlog() << endl;
+	cout << "ÐŸÑ€Ð¸Ð²ÐµÑ‚, " << currentUser_->getlog() << endl;
 	while (currentUser_)
 	{
-		cout << "1 - Ïîêàçàòü ÷àò, 2 - Îòïðàâèòü ñîîáùåíèå, 3 - Ïîêàçàòü âñåõ ïîëüçîâàòåëåé, 0 - âûõîä" << endl;
+		cout << "1 - ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ñ‡Ð°Ñ‚, 2 - ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ, 3 - ÐŸÐ¾ÐºÐ°Ð·Ð°Ñ‚ÑŒ Ð²ÑÐµÑ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹, 0 - Ð²Ñ‹Ñ…Ð¾Ð´" << endl;
 		cin >> op;
 
 		switch (op)
@@ -109,7 +109,7 @@ void Chat::showUserMenu()
 			break;
 
 		default:
-			cout << "Ââåäèòå 1,2,3" << endl;
+			cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ 1,2,3" << endl;
 		}
 	}
 
@@ -118,9 +118,9 @@ void Chat::showUserMenu()
 void Chat::addMessage()
 {
 	string to, text;
-	cout << "Ââåäèòå èìÿ êîìó îòïðàâèòü ñîîáùåíèå, äëÿ îòïðàâêè ñîîáùåíèÿ âñåì - all" << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ ÐºÐ¾Ð¼Ñƒ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ, Ð´Ð»Ñ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÐºÐ¸ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ Ð²ÑÐµÐ¼ - all" << endl;
 	cin >> to;
-	cout << "Ââåäèòå ñîîáùåíèå:" << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ:" << endl;
 	cin.ignore();
 	getline(cin, text);
 
@@ -148,9 +148,9 @@ void Chat::showLoginMenu()
 	char op;
 	do
 	{
-		cout << " 1 - Àâòîðèçàöèÿ " << endl;
-		cout << " 2 - Ðåãèñòðàöèÿ " << endl;
-		cout << " 0 - âûõîä " << endl;
+		cout << " 1 - ÐÐ²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ñ " << endl;
+		cout << " 2 - Ð ÐµÐ³Ð¸ÑÑ‚Ñ€Ð°Ñ†Ð¸Ñ " << endl;
+		cout << " 0 - Ð²Ñ‹Ñ…Ð¾Ð´ " << endl;
 		cin >> op;
 
 		switch (op)
@@ -173,7 +173,7 @@ void Chat::showLoginMenu()
 			break;
 
 		default:
-			cout << "Ââåäèòå 1, 2, 0" << endl;
+			cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ 1, 2, 0" << endl;
 		}
 	} while (!currentUser_ && work_);
 }
