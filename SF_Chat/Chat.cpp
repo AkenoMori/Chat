@@ -2,6 +2,7 @@
 #include <memory>
 #include <exception>
 #include "Chat.h"
+#include <fstream>
 
 void Chat::startChat()
 {
@@ -37,52 +38,89 @@ shared_ptr <User> Chat::getUserName(const string& name) const
 
 void Chat::userLogin()
 {
+	string login_check = "login.txt";
+	string password_check = "password.txt";
+	fstream log;
+	fstream pass;
 	string login, password;
-	char op;
-
-	do
+	log.open(login_check, fstream::in | fstream::out | fstream::app);
+	pass.open(password_check, fstream::in | fstream::out | fstream::app);
+	if (!log.is_open() && !pass.is_open())
 	{
-		cout << "Авторизация." << endl;
-		cout << "Логин: " << endl;
-		cin >> login;
-		cout << "Пароль: " << endl;
-		cin >> password;
-
-		currentUser_ = getUserLog(login);
-
-		if (currentUser_ == nullptr || password != currentUser_->getPass())
+		cout << "Ошибка!" << endl;
+	}
+	else {
+		do
 		{
-			currentUser_ = nullptr;
-			cout << "Неправильный логин или пароль. 0 - выход." << endl;
-			cin >> op;
+			char op;
 
-			if (op == '0')
-				break;
-		}
+			while (!log.eof()) 
+			{
+				login = "";
+				log >> login; 
+			}
+			while (!pass.eof()) 
+			{
+				password = "";
+				pass >> password; 
+			}
+			string _log;
+			string _pass;
+			cout << "Авторизация." << endl;
+			cout << "Логин: " << endl;
+			cin >> _log;
+			cout << "Пароль: " << endl;
+			cin >> _pass;
+			if (_log != login && _pass != password)
+			{
+				cout << "Пароль или логин введен не правильно!" << endl;
+			}
+			else
+			{
+				currentUser_ = getUserLog(login);
+			}
 
-	} while (!currentUser_);
+			
+
+		} while (!currentUser_);
+	}
 }
 void Chat::userRegistration()
 {
 	cout << "Регистрация" << endl;
-	string login, password, name;
-
-	cout << "Логин:  " << endl;
-	cin >> login;
-	cout << "Пароль:   " << endl;
-	cin >> password;
-	cout << "Имя: " << endl;
-	cin >> name;
-
-	if (getUserLog(login) || login == "all")
+	string login_check = "login.txt";
+	string password_check = "password.txt";
+	string name;
+	fstream log;
+	fstream pass;
+	string login, password;
+	log.open(login_check, fstream::in | fstream::out | fstream::app);
+	pass.open(password_check, fstream::in | fstream::out | fstream::app);
+	if (!log.is_open() && !pass.is_open())
 	{
-		throw UserLoginEx();
+		cout << "Ошибка!" << endl;
 	}
+	else {
+		
+		cout << "Логин:  " << endl;
+		cin >> login;
+		cout << "Пароль:   " << endl;
+		cin >> password;
+		log << login;
+		log << password;
+		cout << "Имя: " << endl;
+		cin >> name;
 
-	User user = User(login, password, name);
-	userArr_.push_back(user);
-	currentUser_ = make_shared <User>(user);
+		if (getUserLog(login) || login == "all")
+		{
+			throw UserLoginEx();
+		}
 
+		User user = User(login, password, name);
+		userArr_.push_back(user);
+		currentUser_ = make_shared <User>(user);
+
+	}
 }
 void Chat::showUserMenu()
 {
