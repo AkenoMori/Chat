@@ -107,7 +107,7 @@ void Chat::userRegistration()
 		cout << "Пароль:   " << endl;
 		cin >> password;
 		log << login;
-		log << password;
+		pass << password;
 		cout << "Имя: " << endl;
 		cin >> name;
 
