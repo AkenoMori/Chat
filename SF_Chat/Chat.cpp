@@ -1,7 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <exception>
-#include "src/Chat.h"
+#include "Chat.h"
 
 void Chat::startChat()
 {
